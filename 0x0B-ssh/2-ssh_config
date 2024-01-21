@@ -1,7 +1,12 @@
-Host *                                # match hosts
-    SendEnv LANG LC_*                 # specifies what environment variables should be sent to the server.
-    HashKnownHosts yes                # ssh should hash host names and addresses (~/.ssh/known_hosts content). 
-    GSSAPIAuthentication yes          # GSSAPI (for Kerberos authentication) is allowed.
-    PasswordAuthentication no         # refuse to authenticate using a password. 
-    IdentityFile ~/.ssh/school        # use the private key ~/.ssh/school.
-
+# match hosts
+# specifies what environment variables should be sent to the server.
+# ssh should hash host names and addresses (~/.ssh/known_hosts content). 
+# GSSAPI (for Kerberos authentication) is allowed.
+# refuse to authenticate using a password. 
+# use the private key ~/.ssh/school.
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
