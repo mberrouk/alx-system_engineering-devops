@@ -1,8 +1,12 @@
-Ssh::Config_entry {
+file { '/etc/ssh/ssh_config':
   ensure => present,
   path   => '/etc/ssh/ssh_config',
-  lines  => [
-    '    PasswordAuthentication no',
-    '    IdentityFile ~/.ssh/school',
-  ],
+  content   => "
+    Host *
+      SendEnv LANG LC_*
+      HashKnownHosts yes
+      GSSAPIAuthentication yes
+      PasswordAuthentication no
+      IdentityFile ~/.ssh/school
+  "
 }
