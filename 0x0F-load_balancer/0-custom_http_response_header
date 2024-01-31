@@ -2,7 +2,7 @@
 # install and config Nginx.
 
 # Install
-udo apt-get update
+sudo apt-get update
 sudo apt-get -y install nginx
 sudo service nginx start
 
