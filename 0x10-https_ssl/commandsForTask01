@@ -1,0 +1,15 @@
+sudo apt update
+sudo apt-get remove certbot
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo ufw allow 443
+sudo service haproxy stop
+sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d www.mberrouk.tech
+sudo mkdir -p /etc/haproxy/certs
+DOMAIN='www.mberrouk.tech' sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
+sudo chmod -R go-rwx /etc/haproxy/certs
+
+if [[ $# -eq 1 ]]; then
+cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.old
+cp 1-install_load_balancer /etc/haproxy/haproxy.cfg
+fi
