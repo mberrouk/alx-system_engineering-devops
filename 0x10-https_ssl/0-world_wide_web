@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+print_out() {
+	dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk -F " " 'NR==2 {split($1, domain, ".");
+	print "The subdomain " domain[1] " is a " $4 " record and points to " $5 }'
+}
+
+if [[ $# -eq 2 ]]; then 
+	print_out "$1" "$2"
+	elif [[ $# -ne 0 ]]; then
+	       for dom in "www" "lb-01" "web-01" "web-02"
+	       do
+		       print_out "$1" "$dom"
+	       done
+fi
