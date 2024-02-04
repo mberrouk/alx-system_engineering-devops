@@ -7,7 +7,7 @@ if [[ -z $(whereis nginx | awk '{ print $2 }') ]] ; then
 	apt install -y nginx
 fi
 
-if [[ -z $(whereis ufw | awk '{ print $2 }') ]] ; then
+if [[ -n $(whereis ufw | awk '{ print $2 }') ]] ; then
 	ufw allow 'Nginx HTTP'
 fi
 
