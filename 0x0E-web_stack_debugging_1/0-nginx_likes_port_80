@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# script that configures a nginx server
+
+apt update
+
+if [[ -z $(whereis nginx | awk '{ print $2 }') ]] ; then
+	apt install -y nginx
+fi
+
+if [[ -z $(whereis ufw | awk '{ print $2 }') ]] ; then
+	ufw allow 'Nginx HTTP'
+fi
+
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
