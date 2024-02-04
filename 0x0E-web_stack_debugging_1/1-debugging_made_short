@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # script that configures a nginx server
-
 sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
 service nginx restart
-rm /var/run/nginx.pid
+rm -f /var/run/nginx.pid
