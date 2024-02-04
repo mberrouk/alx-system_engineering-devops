@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # script that configures a nginx server
 
-rm -f /etc/nginx/sites-available/*
-rm -f /etc/nginx/sites-enabled/*~
-sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+rm -f /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
