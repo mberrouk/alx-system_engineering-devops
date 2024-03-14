@@ -1,9 +1,11 @@
 # Increase the number of open file for nginx service 
 exec {'fix--for-nginx':
-	command => '/usr/bin/env sed -i "s/15/1000/g" /etc/default/nginx'
+	command => 'sed -i "s/15/1000/g" /etc/default/nginx',
+ 	path    => '/usr/local/bin/:/bin/'
 }->
 
 # restart nginx 
 exec {'restart-nginx':
-	command => '/usr/bin/env service nginx restart'
+	command => 'nginx restart',
+ 	path    => '/etc/init.d/'
 }
